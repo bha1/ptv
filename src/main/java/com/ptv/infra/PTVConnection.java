@@ -46,4 +46,8 @@ public class PTVConnection {
         return url.toString();
 
     }
+    
+    public String wrapper(final String uri) throws Exception {
+    	return buildTTAPIURL(PTVCreds.baseUrl, PTVCreds.privateKey, uri, PTVCreds.devId);
+    }
 }
