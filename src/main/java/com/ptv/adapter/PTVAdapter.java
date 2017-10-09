@@ -69,7 +69,7 @@ public class PTVAdapter {
 		        		  times[1] = departure.getScheduled_departure_utc();
 		        		  
 		        	  }
-		        	  times[3] = "10";
+		        	  times[2] = "10";
 		          }
 		          
 		        } catch (Exception e) {
