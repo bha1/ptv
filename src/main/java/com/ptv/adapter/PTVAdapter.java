@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -29,7 +30,12 @@ public class PTVAdapter {
 		 HttpClient httpClient = new DefaultHttpClient();
 		    try {
 		    	PTVConnection con = new PTVConnection();
-		    	String url = con.wrapper("/v3/departures/route_type/1/stop/2864/route/1880?direction_id=16");
+		      TimeZone tz = TimeZone.getTimeZone("UTC");
+		      DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+		      df.setTimeZone(tz);
+		      String nowAsISO = df.format(new Date());
+		      nowAsISO.replaceAll(":", "%3A");
+		    	String url = con.wrapper("/v3/departures/route_type/1/stop/2864/route/1880?direction_id=16&max_results=3&date_utc="+nowAsISO);
 		    	System.out.println(url);
 		      HttpGet httpGetRequest = new HttpGet(url);
 		      HttpResponse httpResponse = httpClient.execute(httpGetRequest);
@@ -40,9 +46,9 @@ public class PTVAdapter {
 
 		      HttpEntity entity = httpResponse.getEntity();
 		      PTVResponse dep = new PTVResponse();
-		      TimeZone tz = TimeZone.getTimeZone("UTC");
-		      DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'z'"); // Quoted "Z" to indicate UTC, no timezone offset
-		      df.setTimeZone(tz);
+//		      TimeZone tz = TimeZone.getTimeZone("UTC");
+//		      DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'z'"); // Quoted "Z" to indicate UTC, no timezone offset
+//		      df.setTimeZone(tz);
 		      byte[] buffer = new byte[1024];
 		      if (entity != null) {
 		        InputStream inputStream = entity.getContent();
@@ -63,13 +69,26 @@ public class PTVAdapter {
 		        	//  CharSequence dt = departure.getScheduled_departure_utc();
 		        	//  ZonedDateTime scheduled = ZonedDateTime.parse(dt, sdf);
 		        	//  LocalDate scheduled = LocalDate.parse(departure.getScheduled_departure_utc(), df);
-		        	  times[0] = departure.getScheduled_departure_utc();
+		        	  Date now = new Date();
+		        	  Instant inst = Instant.parse(departure.getScheduled_departure_utc());
+		        	  Date sDate = Date.from(inst);
+		        	  Date eDate = new Date();
+		        	  long diff;
+		        	  long diffMinutes = -99;
+	        		  diff = sDate.getTime() - now.getTime();
+	        		  diffMinutes = diff / (60 * 1000);
+		        	  times[0] = df.format(new Date());
+		        	  times[1] = departure.getScheduled_departure_utc();
 		        	  if(departure.getEstimated_departure_utc()!= null) {
 		        		//  LocalDate estimated = df.parse(departure.getEstimated_departure_utc());
-		        		  times[1] = departure.getScheduled_departure_utc();
-		        		  
+		        		  inst = Instant.parse(departure.getEstimated_departure_utc());
+		        		  eDate = Date.from(inst);
+		        		  times[0] = departure.getScheduled_departure_utc();
+		        		  times[1] = departure.getEstimated_departure_utc();
+		        		  diff = eDate.getTime() - now.getTime();
+		        		  diffMinutes = diff / (60 * 1000);
 		        	  }
-		        	  times[2] = "10";
+		        	  times[2] = String.valueOf(diffMinutes);
 		          }
 		          
 		        } catch (Exception e) {
