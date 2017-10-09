@@ -29,7 +29,7 @@ public class PTVAdapter {
 		 HttpClient httpClient = new DefaultHttpClient();
 		    try {
 		    	PTVConnection con = new PTVConnection();
-		    	String url = con.wrapper("/v3/departures/route_type/1/stop/2864/route/1880?direction_id=16&max_results=3&date_utc=2017-10-09T23%3A03%3A27.492Z");
+		    	String url = con.wrapper("/v3/departures/route_type/1/stop/2864/route/1880?direction_id=16");
 		    	System.out.println(url);
 		      HttpGet httpGetRequest = new HttpGet(url);
 		      HttpResponse httpResponse = httpClient.execute(httpGetRequest);
