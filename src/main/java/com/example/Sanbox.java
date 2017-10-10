@@ -10,9 +10,17 @@ import com.ptv.adapter.PTVAdapter;
 @RequestMapping(path="/getnext")
 public class Sanbox {
 	@RequestMapping(method=RequestMethod.GET)
-	public String[] betNextThree() {
+	public GoogleResponse betNextThree() {
 		PTVAdapter adapter = new PTVAdapter();
 		String[] times = adapter.getNextTrams();
-		return times;
+		GoogleResponse response = new GoogleResponse();
+		StringBuilder builder = new StringBuilder();
+		builder.append("next tram is in, ");
+		builder.append(times[2]);
+		builder.append(" minutes");
+		response.setDisplayText(builder.toString());
+		response.setSource("PTV");
+		response.setSpeech(builder.toString());
+		return response;
 	}
 }

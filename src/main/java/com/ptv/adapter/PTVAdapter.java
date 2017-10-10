@@ -89,6 +89,7 @@ public class PTVAdapter {
 		        		  diffMinutes = diff / (60 * 1000);
 		        	  }
 		        	  times[2] = String.valueOf(diffMinutes);
+		        	  break;
 		          }
 		          
 		        } catch (Exception e) {
