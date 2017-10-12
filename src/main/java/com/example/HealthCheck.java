@@ -23,7 +23,7 @@ public class HealthCheck {
         String quote = null;
         try {
 			Thread.sleep(1600000);
-			quote = restTemplate.getForObject("http://127.0.0.1:5000/healthcheck/b", String.class);
+			quote = restTemplate.getForObject("https://fathomless-sands-76170.herokuapp.com/healthcheck/b", String.class);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.err.println("time out in health a");
@@ -43,7 +43,7 @@ public class HealthCheck {
         String quote = null;
         try {
  			Thread.sleep(1600000);
- 			quote = restTemplate.getForObject("http://127.0.0.1:5000/healthcheck/a", String.class);
+ 			quote = restTemplate.getForObject("https://fathomless-sands-76170.herokuapp.com/healthcheck/a", String.class);
  		} catch (Exception e) {
  			// TODO Auto-generated catch block
  			System.err.println("time out in health b");
