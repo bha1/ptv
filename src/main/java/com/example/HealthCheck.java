@@ -22,7 +22,7 @@ public class HealthCheck {
         rf.setConnectTimeout(timeout);
         String quote = null;
         try {
-			Thread.sleep(1600000);
+			Thread.sleep(300000);
 			quote = restTemplate.getForObject("https://fathomless-sands-76170.herokuapp.com/healthcheck/b", String.class);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -42,7 +42,7 @@ public class HealthCheck {
         rf.setConnectTimeout(1000);
         String quote = null;
         try {
- 			Thread.sleep(1600000);
+ 			Thread.sleep(300000);
  			quote = restTemplate.getForObject("https://fathomless-sands-76170.herokuapp.com/healthcheck/a", String.class);
  		} catch (Exception e) {
  			// TODO Auto-generated catch block
