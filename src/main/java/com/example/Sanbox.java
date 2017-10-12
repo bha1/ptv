@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,8 @@ public class Sanbox {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public GoogleResponse postNextThree() {
+	public GoogleResponse postNextThree(@RequestBody Object body) {
+		System.out.println(body.toString());
 		PTVAdapter adapter = new PTVAdapter();
 		String[] times = adapter.getNextTrams();
 		GoogleResponse response = new GoogleResponse();
