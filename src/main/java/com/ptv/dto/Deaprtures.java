@@ -1,4 +1,4 @@
-package com.example;
+package com.ptv.dto;
 
 import java.util.Date;
 

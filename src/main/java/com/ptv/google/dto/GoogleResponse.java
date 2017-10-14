@@ -1,4 +1,4 @@
-package com.example;
+package com.ptv.google.dto;
 
 public class GoogleResponse {
 		private String speech;//": "Barack Hussein Obama II was the 44th and current President of the United States.",

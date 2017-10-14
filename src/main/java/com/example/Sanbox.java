@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ptv.adapter.PTVAdapter;
+import com.ptv.google.dto.GoogleResponse;
 
 @RestController
 @RequestMapping(path="/getnext")
@@ -28,6 +29,7 @@ public class Sanbox {
 	@RequestMapping(method=RequestMethod.POST)
 	public GoogleResponse postNextThree(@RequestBody Object body) {
 		System.out.println(body.toString());
+		System.out.println("some test");
 		PTVAdapter adapter = new PTVAdapter();
 		String[] times = adapter.getNextTrams();
 		GoogleResponse response = new GoogleResponse();
