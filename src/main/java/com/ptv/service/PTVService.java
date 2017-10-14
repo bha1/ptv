@@ -2,13 +2,19 @@ package com.ptv.service;
 
 
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RootUriTemplateHandler;
+import org.springframework.stereotype.Service;
 
+import com.ptv.adapter.PTVAdapter;
+import com.ptv.entity.Route;
 import com.ptv.entity.RouteRepository;
-import com.ptv.infra.SessionUtil;
 
+@Service
 public class PTVService {
 //	public void listRoutes() {
 //		Session session = SessionUtil.openSession();
@@ -37,11 +43,24 @@ public class PTVService {
 //			SessionUtil.closeSession(session);
 //		}
 //	}
-	
+//	
 	@Autowired
-	private RouteRepository routeRepository;
+	public PTVService(RouteRepository repository) {
+		// TODO Auto-generated constructor stub
+		this.repository = repository;
+	}
+	
+	private RouteRepository repository;
 	
 	public void listRoutes() {
+		PTVAdapter adapter = new PTVAdapter();
+		//adapter.getRoutes();
+		
+		ArrayList<Route> list = adapter.getRoutes();
+		for(Route route : list) {
+			System.out.println(route.getRoute_id());
+			repository.save(route);
+		}
 		
 	}
 }

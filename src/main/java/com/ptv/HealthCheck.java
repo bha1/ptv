@@ -1,4 +1,4 @@
-package com.example;
+package com.ptv;
 
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.RequestMapping;

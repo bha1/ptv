@@ -18,51 +18,49 @@ public class Route implements Serializable{
 	
 	@Id
 	@Column(name="ROUTE_TYPE")
-	private String routeType;
+	private String route_type;
 	
-	@Id
 	@Column(name="ROUTE_ID")
-	private String routeId;
+	private String route_id;
 	
 	@Column(name="ROUTE_NAME")
-	private String routeName;
+	private String route_name;
 	
 	@Column(name="ROUTE_NUMBER")
-	private String routeNumber;
+	private String route_number;
 
-	public String getRouteType() {
-		return routeType;
+	public String getRoute_type() {
+		return route_type;
 	}
 
-	public void setRouteType(String routeType) {
-		this.routeType = routeType;
+	public void setRoute_type(String route_type) {
+		this.route_type = route_type;
 	}
 
-	public String getRouteId() {
-		return routeId;
+	public String getRoute_id() {
+		return route_id;
 	}
 
-	public void setRouteId(String routeId) {
-		this.routeId = routeId;
+	public void setRoute_id(String route_id) {
+		this.route_id = route_id;
 	}
 
-	public String getRouteName() {
-		return routeName;
+	public String getRoute_name() {
+		return route_name;
 	}
 
-	public void setRouteName(String routeName) {
-		this.routeName = routeName;
+	public void setRoute_name(String route_name) {
+		this.route_name = route_name;
 	}
 
-	public String getRouteNumber() {
-		return routeNumber;
+	public String getRoute_number() {
+		return route_number;
 	}
 
-	public void setRouteNumber(String routeNumber) {
-		this.routeNumber = routeNumber;
+	public void setRoute_number(String route_number) {
+		this.route_number = route_number;
 	}
-	
-	
+
 	
 
 }

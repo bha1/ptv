@@ -3,14 +3,20 @@ package com.ptv.adapter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
+import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.ptv.dto.Deaprtures;
 import com.ptv.dto.PTVResponse;
+import com.ptv.dto.RoutesResponse;
+import com.ptv.entity.Route;
 import com.ptv.infra.PTVConnection;
 
 public class PTVAdapter {
@@ -74,4 +80,25 @@ public class PTVAdapter {
 
 		return times;
 	}
+	
+	public ArrayList<Route> getRoutes(){
+		PTVConnection con = new PTVConnection();
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
+		//SimpleClientHttpRequestFactory rf = (SimpleClientHttpRequestFactory) restTemplate.getRequestFactory();
+		// rf.setReadTimeout(timeout);
+		// rf.setConnectTimeout(timeout);
+		RoutesResponse response = null;
+		try {
+			String url = con.wrapper(
+					"/v3/routes?route_types=1");
+			System.out.println(url);
+			System.out.println();
+			response = restTemplate.getForObject(url, RoutesResponse.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Route>(Arrays.asList(response.getRoutes()));
+	}
+	
 }
