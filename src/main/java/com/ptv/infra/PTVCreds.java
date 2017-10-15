@@ -9,6 +9,4 @@ public class PTVCreds {
 	
 	protected static String baseUrl= System.getenv().get("PTV_URL");
 	
-//	some comment to test ignoer
-//	some comment to test ignoer	
 }
