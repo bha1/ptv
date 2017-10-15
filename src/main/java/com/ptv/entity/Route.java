@@ -5,10 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ROUTES")
+@IdClass(RouteId.class)
 public class Route implements Serializable{
 
 	/**
@@ -20,6 +22,7 @@ public class Route implements Serializable{
 	@Column(name="ROUTE_TYPE")
 	private String route_type;
 	
+	@Id
 	@Column(name="ROUTE_ID")
 	private String route_id;
 	
