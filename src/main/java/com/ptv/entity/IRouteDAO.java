@@ -8,6 +8,8 @@ public interface IRouteDAO {
     Route getRouteById(String routeId);
     void addRoute(Route route);
     void updateRoute(Route route);
-    void deleteRoute(String routeId);
+    void deleteRoute(RouteId routeId);
 	void addRouteAll(ArrayList<Route> routeList);
+	void deleteAllRoutes();
+	void deleteRoute(Route routeId);
 }

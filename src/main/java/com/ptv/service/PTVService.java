@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ptv.adapter.PTVAdapter;
 import com.ptv.entity.IRouteDAO;
 import com.ptv.entity.Route;
+import com.ptv.entity.RouteId;
 import com.ptv.entity.RouteRepository;
 
 @Service
@@ -53,16 +54,36 @@ public class PTVService implements IPTVService{
 	private IRouteDAO routeDAO;
 	
 	@Override
-	public void listRoutes() {
+	public String beginInit() {
+		String response = null;
+		try {
 		PTVAdapter adapter = new PTVAdapter();
-		//adapter.getRoutes();
-		
+		//clear routes
+		ArrayList<Route> routeList = (ArrayList<Route>) routeDAO.getAllRoutes();
+		for(Route route : routeList) {
+			//routeDAO.deleteRoute(new RouteId(route.getRoute_type(), route.getRoute_id()));
+			routeDAO.deleteRoute(route);
+		}
+		//load routes
 		ArrayList<Route> list = adapter.getRoutes();
 		routeDAO.addRouteAll(list);
 		for(Route route : list) {
 			System.out.println(route.getRoute_id());
-//			repository.save(route);
 		}
+		
+		//load directions
+		
+		
+		response = "init call success";
+		}catch(Exception e){
+			e.printStackTrace();
+			response = "init call failed";
+		}
+		return response;
+	}
+	
+	@Override
+	public void listRoutes() {
 		
 	}
 }

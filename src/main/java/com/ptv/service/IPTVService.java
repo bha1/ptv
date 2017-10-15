@@ -4,4 +4,6 @@ public interface IPTVService {
 
 	void listRoutes();
 
+	String beginInit();
+
 }

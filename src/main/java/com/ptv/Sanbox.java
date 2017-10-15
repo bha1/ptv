@@ -52,4 +52,9 @@ public class Sanbox {
 		response.setSpeech(builder.toString());
 		return response;
 	}
+	
+	@RequestMapping(path="/init",method=RequestMethod.GET)
+	public String beginInit() {
+		return service.beginInit();
+	}
 }

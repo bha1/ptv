@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 @Transactional
@@ -23,8 +25,9 @@ public class RouteDAO implements IRouteDAO {
 	@Override
 	public List<Route> getAllRoutes() {
 		String hql = "FROM Route as route ORDER BY route.route_id";
-		return (List<Route>) entityManager.createQuery(hql).getResultList();
+		return (ArrayList<Route>) entityManager.createQuery(hql).getResultList();
 	}
+
 
 	@Override
 	public void addRoute(Route route) {
@@ -47,10 +50,6 @@ public class RouteDAO implements IRouteDAO {
 		entityManager.flush();
 	}
 
-	@Override
-	public void deleteRoute(String route_id) {
-		entityManager.remove(getRouteById(route_id));
-	}
 	// @Override
 	// public boolean articleExists(String title, String category) {
 	// String hql = "FROM Article as atcl WHERE atcl.title = ? and atcl.category =
@@ -59,5 +58,31 @@ public class RouteDAO implements IRouteDAO {
 	// .setParameter(2, category).getResultList().size();
 	// return count > 0 ? true : false;
 	// }
+//	
+//	@Override
+//	public boolean articleExists(String title, String category) {
+//		String hql = "FROM Article as atcl WHERE atcl.title = ? and atcl.category = ?";
+//		int count = entityManager.createQuery(hql).setParameter(1, title)
+//		              .setParameter(2, category).getResultList().size();
+//		return count > 0 ? true : false;
+//	}
+
+	@Override
+	public void deleteAllRoutes() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRoute(Route routeId) {
+		entityManager.remove(routeId);
+		
+	}
+
+	@Override
+	public void deleteRoute(RouteId routeId) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
