@@ -91,7 +91,7 @@ public class PTVAdapter {
 		RoutesResponse response = null;
 		try {
 			String url = con.wrapper(
-					"/v3/routes?route_types=1");
+					"/v3/routes?route_types=1&route_types=0");
 			System.out.println(url);
 			System.out.println();
 			response = restTemplate.getForObject(url, RoutesResponse.class);

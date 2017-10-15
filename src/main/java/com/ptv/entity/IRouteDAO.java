@@ -12,4 +12,5 @@ public interface IRouteDAO {
 	void addRouteAll(ArrayList<Route> routeList);
 	void deleteAllRoutes();
 	void deleteRoute(Route routeId);
+	Route getRouteByrouteId(String route_id);
 }

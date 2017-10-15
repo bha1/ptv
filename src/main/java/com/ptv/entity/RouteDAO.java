@@ -28,11 +28,18 @@ public class RouteDAO implements IRouteDAO {
 		return (ArrayList<Route>) entityManager.createQuery(hql).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Route getRouteByrouteId(String route_id) {
+		String hql = "FROM Route as route WHERE route.route_id = :route_id";
+		return (Route) entityManager.createQuery(hql).setParameter("route_id", route_id).getResultList().get(0);
+	}
 
 	@Override
 	public void addRoute(Route route) {
 		entityManager.persist(route);
 	}
+
 	@Override
 	public void addRouteAll(ArrayList<Route> routeList) {
 		for (Route route : routeList) {
@@ -58,31 +65,32 @@ public class RouteDAO implements IRouteDAO {
 	// .setParameter(2, category).getResultList().size();
 	// return count > 0 ? true : false;
 	// }
-//	
-//	@Override
-//	public boolean articleExists(String title, String category) {
-//		String hql = "FROM Article as atcl WHERE atcl.title = ? and atcl.category = ?";
-//		int count = entityManager.createQuery(hql).setParameter(1, title)
-//		              .setParameter(2, category).getResultList().size();
-//		return count > 0 ? true : false;
-//	}
+	//
+	// @Override
+	// public boolean articleExists(String title, String category) {
+	// String hql = "FROM Article as atcl WHERE atcl.title = ? and atcl.category =
+	// ?";
+	// int count = entityManager.createQuery(hql).setParameter(1, title)
+	// .setParameter(2, category).getResultList().size();
+	// return count > 0 ? true : false;
+	// }
 
 	@Override
 	public void deleteAllRoutes() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteRoute(Route routeId) {
 		entityManager.remove(routeId);
-		
+
 	}
 
 	@Override
 	public void deleteRoute(RouteId routeId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

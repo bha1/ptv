@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ptv.adapter.PTVAdapter;
 import com.ptv.entity.RouteRepository;
+import com.ptv.google.dto.GoogleRequest;
 import com.ptv.google.dto.GoogleResponse;
 import com.ptv.service.IPTVService;
 import com.ptv.service.PTVService;
@@ -35,15 +36,16 @@ public class Sanbox {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public GoogleResponse postNextThree(@RequestBody Object body) {
+	public GoogleResponse postNextThree(@RequestBody GoogleRequest body) {
 		System.out.println(body.toString());
 		System.out.println("some test");
 		//PTVService service = new PTVService();
 		service.listRoutes();
 		PTVAdapter adapter = new PTVAdapter();
-		String[] times = adapter.getNextTrams();
+		//String[] times = adapter.getNextTrams();
 		GoogleResponse response = new GoogleResponse();
 		StringBuilder builder = new StringBuilder();
+		String[] times = {"a","b","c"};
 		builder.append("next tram is in, ");
 		builder.append(times[2]);
 		builder.append(" minutes");

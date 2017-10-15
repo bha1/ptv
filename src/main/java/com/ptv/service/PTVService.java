@@ -64,6 +64,7 @@ public class PTVService implements IPTVService{
 			//routeDAO.deleteRoute(new RouteId(route.getRoute_type(), route.getRoute_id()));
 			routeDAO.deleteRoute(route);
 		}
+		
 		//load routes
 		ArrayList<Route> list = adapter.getRoutes();
 		routeDAO.addRouteAll(list);
@@ -71,6 +72,7 @@ public class PTVService implements IPTVService{
 			System.out.println(route.getRoute_id());
 		}
 		
+		System.out.println(routeDAO.getRouteByrouteId("1880").getRoute_name());
 		//load directions
 		
 		
