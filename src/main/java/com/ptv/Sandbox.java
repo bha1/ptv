@@ -15,7 +15,7 @@ import com.ptv.service.PTVService;
 
 @RestController
 @RequestMapping(path="/getnext")
-public class Sanbox {
+public class Sandbox {
 	
 	@Autowired
 	IPTVService service;

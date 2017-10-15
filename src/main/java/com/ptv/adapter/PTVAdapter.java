@@ -14,8 +14,10 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.ptv.dto.Deaprtures;
+import com.ptv.dto.DirectionResponse;
 import com.ptv.dto.PTVResponse;
 import com.ptv.dto.RoutesResponse;
+import com.ptv.entity.Direction;
 import com.ptv.entity.Route;
 import com.ptv.infra.PTVConnection;
 
@@ -99,6 +101,26 @@ public class PTVAdapter {
 			e.printStackTrace();
 		}
 		return new ArrayList<Route>(Arrays.asList(response.getRoutes()));
+	}
+	
+	public ArrayList<Direction> getDirection(String route_id){
+		PTVConnection con = new PTVConnection();
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
+		//SimpleClientHttpRequestFactory rf = (SimpleClientHttpRequestFactory) restTemplate.getRequestFactory();
+		// rf.setReadTimeout(timeout);
+		// rf.setConnectTimeout(timeout);
+		DirectionResponse response = null;
+		try {
+			String url = con.wrapper(
+					"/v3/directions/route/"+route_id);
+			System.out.println(url);
+			System.out.println();
+			response = restTemplate.getForObject(url, DirectionResponse.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Direction>(Arrays.asList(response.getDirections()));
 	}
 	
 }

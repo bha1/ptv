@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ptv.adapter.PTVAdapter;
+import com.ptv.entity.IDirectionDOA;
 import com.ptv.entity.IRouteDAO;
 import com.ptv.entity.Route;
 import com.ptv.entity.RouteId;
@@ -53,6 +54,8 @@ public class PTVService implements IPTVService{
 	@Autowired
 	private IRouteDAO routeDAO;
 	
+	@Autowired IDirectionDOA directionDOA;
+	
 	@Override
 	public String beginInit() {
 		String response = null;
@@ -70,6 +73,7 @@ public class PTVService implements IPTVService{
 		routeDAO.addRouteAll(list);
 		for(Route route : list) {
 			System.out.println(route.getRoute_id());
+			directionDOA.addDirectionAll(adapter.getDirection(route.getRoute_id()));
 		}
 		
 		System.out.println(routeDAO.getRouteByrouteId("1880").getRoute_name());
