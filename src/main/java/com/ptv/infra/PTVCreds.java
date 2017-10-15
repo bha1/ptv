@@ -1,11 +1,13 @@
 package com.ptv.infra;
 
+
 public class PTVCreds {
-	protected static final int devId = 3000416;
 	
-	protected static final String privateKey= "42ea48a9-77cd-446b-807a-92c4142fa41a";
+	protected static int devId = Integer.parseInt(System.getenv().get("PTV_DEV_ID"));
+
+	protected static String privateKey = System.getenv().get("PTV_KEY");
 	
-	protected static final String baseUrl = "https://timetableapi.ptv.vic.gov.au";
+	protected static String baseUrl= System.getenv().get("PTV_URL");
 	
 //	some comment to test ignoer
 //	some comment to test ignoer	
