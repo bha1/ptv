@@ -15,9 +15,9 @@ public class DirectionDOA implements IDirectionDOA {
 	private EntityManager entityManager;
 
 	@Override
-	public Direction getDirectionByRouteId(String route_id) {
+	public ArrayList<Direction> getDirectionsByRouteId(String route_id) {
 		String hql = "FROM Direction as direction WHERE direction.route_id = :route_id";
-		return (Direction) entityManager.createQuery(hql).setParameter("route_id", route_id).getResultList().get(0);
+		return (ArrayList<Direction>) entityManager.createQuery(hql).setParameter("route_id", route_id).getResultList();
 	}
 	
 	@Override

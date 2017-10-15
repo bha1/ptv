@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ptv.adapter.PTVAdapter;
+import com.ptv.entity.Direction;
 import com.ptv.entity.IDirectionDOA;
 import com.ptv.entity.IRouteDAO;
 import com.ptv.entity.Route;
@@ -86,6 +87,17 @@ public class PTVService implements IPTVService{
 			response = "init call failed";
 		}
 		return response;
+	}
+	
+	@Override
+	public Route getRouteByNumber(String route_number) {
+		return routeDAO.getRouteByRouteNumber(route_number);
+	}
+	
+	@Override
+	public Direction[] getDirectionsByRouteId(String route_id) {
+		ArrayList<Direction> list =  directionDOA.getDirectionsByRouteId(route_id);
+		return list.toArray(new Direction[list.size()]);
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ public class Result {
 	private Object fulfillment;
 	private Integer score;
 	private Parameters parameters;
-	private String[] contexts;
+	private Object[] contexts;
 	private Metadata metadata;
 	public String getSource() {
 		return source;
@@ -59,10 +59,10 @@ public class Result {
 	public void setParameters(Parameters parameters) {
 		this.parameters = parameters;
 	}
-	public String[] getContexts() {
+	public Object[] getContexts() {
 		return contexts;
 	}
-	public void setContexts(String[] contexts) {
+	public void setContexts(Object[] contexts) {
 		this.contexts = contexts;
 	}
 	public Metadata getMetadata() {

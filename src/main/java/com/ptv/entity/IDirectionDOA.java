@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface IDirectionDOA {
 
-	Direction getDirectionByRouteId(String route_id);
+	ArrayList<Direction> getDirectionsByRouteId(String route_id);
 
 	void addDirectionAll(ArrayList<Direction> directionList);
 

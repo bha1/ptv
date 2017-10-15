@@ -34,6 +34,12 @@ public class RouteDAO implements IRouteDAO {
 		String hql = "FROM Route as route WHERE route.route_id = :route_id";
 		return (Route) entityManager.createQuery(hql).setParameter("route_id", route_id).getResultList().get(0);
 	}
+	
+	@Override
+	public Route getRouteByRouteNumber(String route_number) {
+		String hql = "FROM Route as route WHERE route.route_number = :route_number";
+		return (Route) entityManager.createQuery(hql).setParameter("route_number", route_number).getResultList().get(0);
+	}
 
 	@Override
 	public void addRoute(Route route) {
