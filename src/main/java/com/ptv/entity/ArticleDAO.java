@@ -25,6 +25,8 @@ public class ArticleDAO implements IArticleDAO {
 	@Override
 	public void addArticle(Route article) {
 		entityManager.persist(article);
+	      entityManager.flush();
+	      entityManager.clear();
 	}
 	@Override
 	public void updateArticle(Route article) {

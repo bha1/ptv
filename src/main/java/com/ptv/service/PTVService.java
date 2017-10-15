@@ -4,18 +4,16 @@ package com.ptv.service;
 
 import java.util.ArrayList;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RootUriTemplateHandler;
 import org.springframework.stereotype.Service;
 
 import com.ptv.adapter.PTVAdapter;
+import com.ptv.entity.IArticleDAO;
 import com.ptv.entity.Route;
 import com.ptv.entity.RouteRepository;
 
 @Service
-public class PTVService {
+public class PTVService implements IPTVService{
 //	public void listRoutes() {
 //		Session session = SessionUtil.openSession();
 //		Transaction tx = null;
@@ -50,8 +48,11 @@ public class PTVService {
 //		this.repository = repository;
 //	}
 	
-	private RouteRepository repository;
+//	private RouteRepository repository;
+	@Autowired
+	private IArticleDAO articleDAO;
 	
+	@Override
 	public void listRoutes() {
 		PTVAdapter adapter = new PTVAdapter();
 		//adapter.getRoutes();
@@ -59,6 +60,7 @@ public class PTVService {
 		ArrayList<Route> list = adapter.getRoutes();
 		for(Route route : list) {
 			System.out.println(route.getRoute_id());
+			articleDAO.addArticle(route);
 //			repository.save(route);
 		}
 		
