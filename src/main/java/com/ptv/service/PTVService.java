@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ptv.adapter.PTVAdapter;
-import com.ptv.entity.IArticleDAO;
+import com.ptv.entity.IRouteDAO;
 import com.ptv.entity.Route;
 import com.ptv.entity.RouteRepository;
 
@@ -50,7 +50,7 @@ public class PTVService implements IPTVService{
 	
 //	private RouteRepository repository;
 	@Autowired
-	private IArticleDAO articleDAO;
+	private IRouteDAO routeDAO;
 	
 	@Override
 	public void listRoutes() {
@@ -58,9 +58,9 @@ public class PTVService implements IPTVService{
 		//adapter.getRoutes();
 		
 		ArrayList<Route> list = adapter.getRoutes();
+		routeDAO.addRouteAll(list);
 		for(Route route : list) {
 			System.out.println(route.getRoute_id());
-			articleDAO.addArticle(route);
 //			repository.save(route);
 		}
 		
