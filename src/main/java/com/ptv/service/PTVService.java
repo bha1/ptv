@@ -44,11 +44,11 @@ public class PTVService {
 //		}
 //	}
 //	
-	@Autowired
-	public PTVService(RouteRepository repository) {
-		// TODO Auto-generated constructor stub
-		this.repository = repository;
-	}
+//	@Autowired
+//	public PTVService(RouteRepository repository) {
+//		// TODO Auto-generated constructor stub
+//		this.repository = repository;
+//	}
 	
 	private RouteRepository repository;
 	
@@ -59,7 +59,7 @@ public class PTVService {
 		ArrayList<Route> list = adapter.getRoutes();
 		for(Route route : list) {
 			System.out.println(route.getRoute_id());
-			repository.save(route);
+//			repository.save(route);
 		}
 		
 	}

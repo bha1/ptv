@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ptv.entity.Route;
 
-@Repository
+//@Repository
 public interface RouteRepository extends CrudRepository<Route, String>{
 
 

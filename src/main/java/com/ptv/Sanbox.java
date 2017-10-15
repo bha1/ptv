@@ -15,8 +15,6 @@ import com.ptv.service.PTVService;
 @RequestMapping(path="/getnext")
 public class Sanbox {
 	
-	@Autowired
-	private RouteRepository repository;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public GoogleResponse getNextThree() {
@@ -37,8 +35,8 @@ public class Sanbox {
 	public GoogleResponse postNextThree(@RequestBody Object body) {
 		System.out.println(body.toString());
 		System.out.println("some test");
-		PTVService service = new PTVService(repository);
-		service.listRoutes();
+//		PTVService service = new PTVService();
+//		service.listRoutes();
 		PTVAdapter adapter = new PTVAdapter();
 		String[] times = adapter.getNextTrams();
 		GoogleResponse response = new GoogleResponse();
