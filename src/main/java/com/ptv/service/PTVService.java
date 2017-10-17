@@ -65,17 +65,20 @@ public class PTVService implements IPTVService{
 		//clear routes
 		ArrayList<Route> routeList = (ArrayList<Route>) routeDAO.getAllRoutes();
 		for(Route route : routeList) {
-			//routeDAO.deleteRoute(new RouteId(route.getRoute_type(), route.getRoute_id()));
-			routeDAO.deleteRoute(route);
+//			routeDAO.deleteRoute(route);
 		}
-		
 		//load routes
-		ArrayList<Route> list = adapter.getRoutes();
-		routeDAO.addRouteAll(list);
-		for(Route route : list) {
-			System.out.println(route.getRoute_id());
-			directionDOA.addDirectionAll(adapter.getDirection(route.getRoute_id()));
+//		ArrayList<Route> list = adapter.getRoutes();
+//		routeDAO.addRouteAll(list);
+
+		ArrayList<Direction> directionList = (ArrayList<Direction>) directionDOA.getAllDirections();
+		for(Direction direction : directionList) {
+//			directionDOA.deleteDirection(direction);
 		}
+//		for(Route route : list) {
+//			System.out.println(route.getRoute_id());
+//			directionDOA.addDirectionAll(adapter.getDirection(route.getRoute_id()));
+//		}
 		
 		System.out.println(routeDAO.getRouteByrouteId("1880").getRoute_name());
 		//load directions

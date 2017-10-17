@@ -14,6 +14,13 @@ public class DirectionDOA implements IDirectionDOA {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Direction> getAllDirections() {
+		String hql = "FROM Direction as direction";
+		return (ArrayList<Direction>) entityManager.createQuery(hql).getResultList();
+	}
+	
 	@Override
 	public ArrayList<Direction> getDirectionsByRouteId(String route_id) {
 		String hql = "FROM Direction as direction WHERE direction.route_id = :route_id";
@@ -27,5 +34,10 @@ public class DirectionDOA implements IDirectionDOA {
 			entityManager.flush();
 			entityManager.clear();
 		}
+	}
+	
+	@Override
+	public void deleteDirection(Direction direction) {
+		entityManager.remove(direction);
 	}
 }

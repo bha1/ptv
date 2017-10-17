@@ -8,4 +8,8 @@ public interface IDirectionDOA {
 
 	void addDirectionAll(ArrayList<Direction> directionList);
 
+	void deleteDirection(Direction direction);
+
+	ArrayList<Direction> getAllDirections();
+
 }
